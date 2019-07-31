@@ -7613,9 +7613,11 @@ input   scanb_en;
       
       wire [2047:0] iram;
       genvar j;
-      generate for (j=0; j < 256; j = j+1) begin:iramout
+      // generate 
+      for (j=0; j < 256; j = j+1) begin:iramout
         assign iram[j*8+7 : j*8] = buff[j];
-      end endgenerate
+      end 
+      //endgenerate
       //
       // reading from ram
       always @(posedge clk) // or posedge rst)
