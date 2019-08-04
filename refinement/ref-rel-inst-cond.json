@@ -3,7 +3,7 @@
   [
     {
       "instruction"     : "I.0",
-      "ready bound"     : 10
+      "ready signal"    : "m1.pc_change == 1"
     }
   ],
   "global invariants" : []

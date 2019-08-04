@@ -40,7 +40,7 @@ int main() {
     cout << "update function: " << z3_update << endl;
   }
 
-/*
+
   VerilogGeneratorBase::VlgGenConfig vlg_cfg;
   VerilogVerificationTargetGenerator::vtg_config_t vtg_cfg;
   vlg_cfg.pass_node_name = true;
@@ -57,6 +57,6 @@ int main() {
   vtg_cfg,
   vlg_cfg);
   vg.GenerateTargets(); 
-*/
+
   return 0;
 }

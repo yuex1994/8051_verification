@@ -10,6 +10,7 @@ using namespace ilang;
 
 void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr);
 void DfsFromRomToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr);
+void DfsFromIramToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr);
 
 #endif // SIMPLE_LIB_H__
 

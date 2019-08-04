@@ -23,14 +23,12 @@ assume -name variable_map_assume_13 {(~ __START__ )|| (__m12__)}
 assume -name variable_map_assume_14 {(~ __START__ )|| (__m13__)}
 assume -name variable_map_assume_15 {(~ __START__ )|| (__m14__)}
 assume -name additional_mapping_control_assume16 {m1.ea_in == 1}
-assume -name additional_mapping_control_assume17 {m1.wbd_ack_i == m1.wbd_stb_o}
-assume -name additional_mapping_control_assume18 {(m1.cxrom_addr != __ILA_SO_PC) || ((m1.cxrom_data_out[7:0] == __ILA_I_oc8051_ROM_rdata_0) && (m1.cxrom_data_out[15:8] == __ILA_I_oc8051_ROM_rdata_1) && (m1.cxrom_data_out[23:16] == __ILA_I_oc8051_ROM_rdata_2))}
-assume -name additional_mapping_control_assume19 {(m1.cxrom_addr != (__ILA_SO_PC+1)) || ((m1.cxrom_data_out[7:0] == __ILA_I_oc8051_ROM_rdata_1) && (m1.cxrom_data_out[15:8] == __ILA_I_oc8051_ROM_rdata_2))}
-assume -name additional_mapping_control_assume20 {(m1.cxrom_addr != (__ILA_SO_PC+2)) || ((m1.cxrom_data_out[7:0] == __ILA_I_oc8051_ROM_rdata_2))}
-assume -name additional_mapping_control_assume21 {(m1.cxrom_addr != (__ILA_SO_PC-1)) || ((m1.cxrom_data_out[15:8] == __ILA_I_oc8051_ROM_rdata_0) && (m1.cxrom_data_out[23:16] == __ILA_I_oc8051_ROM_rdata_1) && (m1.cxrom_data_out[31:24] == __ILA_I_oc8051_ROM_rdata_2))}
-assume -name additional_mapping_control_assume22 {__ILA_SO_PSW[6:0] == m1.oc8051_sfr1.oc8051_psw1.data}
-assume -name issue_decode23 {(~ __START__) || (__ILA_oc8051_decode_of_I__DOT__0__)}
-assume -name issue_valid24 {(~ __START__) || (__ILA_oc8051_valid__)}
+assume -name additional_mapping_control_assume17 {m1.wbd_dat_i == __ILA_I_oc8051_ROM_rdata_0}
+assume -name additional_mapping_control_assume18 {m1.op2 == __ILA_I_oc8051_ROM_rdata_1}
+assume -name additional_mapping_control_assume19 {m1.op3 == __ILA_I_oc8051_ROM_rdata_2}
+assume -name additional_mapping_control_assume20 {__ILA_SO_PSW[6:0] == m1.oc8051_sfr1.oc8051_psw1.data}
+assume -name issue_decode21 {(~ __START__) || (__ILA_oc8051_decode_of_I__DOT__0__)}
+assume -name issue_valid22 {(~ __START__) || (__ILA_oc8051_valid__)}
 assert -name variable_map_assert_0 {(~ __IEND__) || (__m15__)}
 assert -name variable_map_assert_1 {(~ __IEND__) || (__m16__)}
 assert -name variable_map_assert_2 {(~ __IEND__) || (__m17__)}

@@ -387,7 +387,7 @@ assign __m6__ = m1.oc8051_sfr1.oc8051_ports1.p0_out == __ILA_SO_P0 ;
 assign __m7__ = m1.oc8051_sfr1.oc8051_ports1.p1_out == __ILA_SO_P1 ;
 assign __m8__ = m1.oc8051_sfr1.oc8051_ports1.p2_out == __ILA_SO_P2 ;
 assign __m9__ = m1.oc8051_sfr1.oc8051_ports1.p3_out == __ILA_SO_P3 ;
-assign __m10__ = m1.oc8051_memory_interface1.pc == __ILA_SO_PC ;
+assign __m10__ = m1.oc8051_memory_interface1.pc_buf == __ILA_SO_PC ;
 assign __m11__ = m1.oc8051_sfr1.oc8051_sp1.sp_out == __ILA_SO_SP ;
 assign __m12__ = m1.oc8051_sfr1.oc8051_int1.tcon == __ILA_SO_TCON ;
 assign __m13__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
@@ -402,7 +402,7 @@ assign __m21__ = m1.oc8051_sfr1.oc8051_ports1.p0_out == __ILA_SO_P0 ;
 assign __m22__ = m1.oc8051_sfr1.oc8051_ports1.p1_out == __ILA_SO_P1 ;
 assign __m23__ = m1.oc8051_sfr1.oc8051_ports1.p2_out == __ILA_SO_P2 ;
 assign __m24__ = m1.oc8051_sfr1.oc8051_ports1.p3_out == __ILA_SO_P3 ;
-assign __m25__ = m1.oc8051_memory_interface1.pc == __ILA_SO_PC ;
+assign __m25__ = m1.oc8051_memory_interface1.pc_buf == __ILA_SO_PC ;
 assign __m26__ = m1.oc8051_sfr1.oc8051_sp1.sp_out == __ILA_SO_SP ;
 assign __m27__ = m1.oc8051_sfr1.oc8051_int1.tcon == __ILA_SO_TCON ;
 assign __m28__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
@@ -493,7 +493,7 @@ oc8051_top m1(
     .psw(psw),
     .sp(sp),
     .wb_clk_i(clk),
-    .wb_rst_i(dummy_reset),
+    .wb_rst_i(dummy_reset),//dummy_reset
     .wbd_ack_i(__VLG_I_wbd_ack_i),
     .wbd_adr_o(__VLG_O_wbd_adr_o),
     .wbd_cyc_o(__VLG_O_wbd_cyc_o),

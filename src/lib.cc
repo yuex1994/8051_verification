@@ -26,10 +26,13 @@ void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr) {
   else
     std::cout << "pc NULL" << std::endl;
   auto DfsModifyRom = [&model_ptr](const ExprPtr& e) {DfsFromRomToPort(e, model_ptr);};
+  auto DfsModifyIram = [&model_ptr](const ExprPtr& e) {DfsFromIramToPort(e, model_ptr);};
   for (auto updated_state_name : instr_0->updated_states()) {
     auto updated_expr = instr_0->update(updated_state_name);
+    updated_expr->DepthFirstVisit(DfsModifyIram);
     updated_expr->DepthFirstVisit(DfsModifyRom);
   }
+  instr_0->decode()->DepthFirstVisit(DfsModifyIram);
   instr_0->decode()->DepthFirstVisit(DfsModifyRom);
   instr_0->set_update(addr_0, pc_state);
   instr_0->set_update(addr_1, ExprFuse::Add(pc_state, 1));
@@ -37,6 +40,19 @@ void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr) {
 
   return;
 }
+
+void DfsFromIramToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr) {
+  auto ram_state = model_ptr->state("IRAM");
+  if (expr->is_op()) {
+    for (int i = 0; i < expr->arg_num(); i++) {
+      auto arg_expr = expr->arg(i);
+      if (arg_expr == ram_state) {
+        std::cout << GetUidExprOp(expr) << std::endl;
+      }
+    }
+  }
+}
+
 
 void DfsFromRomToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr) {
   auto pc_state = model_ptr->state("PC");
