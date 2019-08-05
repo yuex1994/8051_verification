@@ -15,7 +15,23 @@
     "SP" : "m1.oc8051_sfr1.oc8051_sp1.sp_out",
     "TCON" : "m1.oc8051_sfr1.oc8051_int1.tcon",
     "XRAM_ADDR" : "m1.oc8051_memory_interface1.dadr_o",
-    "XRAM_DATA_OUT" : "m1.oc8051_memory_interface1.ddat_o"
+    "XRAM_DATA_OUT" : "m1.oc8051_memory_interface1.ddat_o",
+    "oc8051_IRAM_data_0" : "m1.iram_0",
+    "oc8051_IRAM_data_1" : "m1.iram_1",
+    "oc8051_IRAM_data_2" : "m1.iram_2",
+    "oc8051_IRAM_data_3" : "m1.iram_3",
+    "oc8051_IRAM_data_4" : "m1.iram_4",
+    "oc8051_IRAM_data_5" : "m1.iram_5",
+    "oc8051_IRAM_data_6" : "m1.iram_6",
+    "oc8051_IRAM_data_7" : "m1.iram_7",
+    "oc8051_IRAM_data_8" : "m1.iram_8",
+    "oc8051_IRAM_data_9" : "m1.iram_9",
+    "oc8051_IRAM_data_10" : "m1.iram_10",
+    "oc8051_IRAM_data_11" : "m1.iram_11",
+    "oc8051_IRAM_data_12" : "m1.iram_12",
+    "oc8051_IRAM_data_13" : "m1.iram_13",
+    "oc8051_IRAM_data_14" : "m1.iram_14",
+    "oc8051_IRAM_data_15" : "m1.iram_15" 
   },
   "interface mapping" : {
     "wb_rst_i"  : "**RESET**",
@@ -58,7 +74,8 @@
     "p2_o" : "**KEEP**",
     "p3_i" : "**KEEP**",
     "p3_o" : "**KEEP**",
-    "ea_in" : "**KEEP**"
+    "ea_in" : "**KEEP**",
+    "iram_short" : "**KEEP**"
   },
   "mapping control" : [ "m1.ea_in == 1",
    "m1.wbd_ack_i == m1.wbd_stb_o",

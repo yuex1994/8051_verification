@@ -10,7 +10,11 @@ using namespace ilang;
 
 void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr);
 void DfsFromRomToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr);
-void DfsFromIramToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr);
+void DfsFromIramToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& iram);
+
+void ModifyIramInterface(const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& iram);
+void ModifyIramLoad(const ExprPtr& parent_expr, int parent_index, const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& iram);
+void ModifyIramStore(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr, const InstrPtr& instr_ptr, std::vector<ExprPtr>& iram); 
 
 #endif // SIMPLE_LIB_H__
 

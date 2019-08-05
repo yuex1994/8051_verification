@@ -6,6 +6,7 @@
 
 /* END OF PREHEADER */
 module wrapper(
+word_in,
 __ILA_I_oc8051_ROM_rdata_0,
 __ILA_I_oc8051_ROM_rdata_1,
 __ILA_I_oc8051_ROM_rdata_2,
@@ -51,28 +52,11 @@ __ILA_SO_TMOD,
 __ILA_SO_XRAM_ADDR,
 __ILA_SO_XRAM_DATA_IN,
 __ILA_SO_XRAM_DATA_OUT,
-__ILA_SO_oc8051_IRAM_data_0,
-__ILA_SO_oc8051_IRAM_data_1,
-__ILA_SO_oc8051_IRAM_data_10,
-__ILA_SO_oc8051_IRAM_data_11,
-__ILA_SO_oc8051_IRAM_data_12,
-__ILA_SO_oc8051_IRAM_data_13,
-__ILA_SO_oc8051_IRAM_data_14,
-__ILA_SO_oc8051_IRAM_data_15,
-__ILA_SO_oc8051_IRAM_data_2,
-__ILA_SO_oc8051_IRAM_data_3,
-__ILA_SO_oc8051_IRAM_data_4,
-__ILA_SO_oc8051_IRAM_data_5,
-__ILA_SO_oc8051_IRAM_data_6,
-__ILA_SO_oc8051_IRAM_data_7,
-__ILA_SO_oc8051_IRAM_data_8,
-__ILA_SO_oc8051_IRAM_data_9,
 __ILA_SO_oc8051_ROM_addr_0,
 __ILA_SO_oc8051_ROM_addr_1,
 __ILA_SO_oc8051_ROM_addr_2,
 __VLG_O_cxrom_addr,
 __VLG_O_iram,
-__VLG_O_iram_short,
 __VLG_O_op1,
 __VLG_O_op1_d,
 __VLG_O_op2,
@@ -113,23 +97,7 @@ __m27__,
 __m28__,
 __m29__,
 __m2__,
-__m30__,
-__m31__,
-__m32__,
-__m33__,
-__m34__,
-__m35__,
-__m36__,
-__m37__,
-__m38__,
-__m39__,
 __m3__,
-__m40__,
-__m41__,
-__m42__,
-__m43__,
-__m44__,
-__m45__,
 __m4__,
 __m5__,
 __m6__,
@@ -141,22 +109,6 @@ b_reg,
 decoder_state,
 dptr,
 ie,
-iram_0,
-iram_1,
-iram_10,
-iram_11,
-iram_12,
-iram_13,
-iram_14,
-iram_15,
-iram_2,
-iram_3,
-iram_4,
-iram_5,
-iram_6,
-iram_7,
-iram_8,
-iram_9,
 p,
 pc,
 pc_log,
@@ -186,6 +138,7 @@ input            __VLG_I_wbd_err_i;
 input            __VLG_I_wbi_ack_i;
 input     [31:0] __VLG_I_wbi_dat_i;
 input            __VLG_I_wbi_err_i;
+input     [128:0] word_in;
 input            clk;
 input            dummy_reset;
 input            rst;
@@ -214,28 +167,11 @@ output      [7:0] __ILA_SO_TMOD;
 output     [15:0] __ILA_SO_XRAM_ADDR;
 output      [7:0] __ILA_SO_XRAM_DATA_IN;
 output      [7:0] __ILA_SO_XRAM_DATA_OUT;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_0;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_1;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_10;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_11;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_12;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_13;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_14;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_15;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_2;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_3;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_4;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_5;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_6;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_7;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_8;
-output      [7:0] __ILA_SO_oc8051_IRAM_data_9;
 output     [15:0] __ILA_SO_oc8051_ROM_addr_0;
 output     [15:0] __ILA_SO_oc8051_ROM_addr_1;
 output     [15:0] __ILA_SO_oc8051_ROM_addr_2;
 output     [15:0] __VLG_O_cxrom_addr;
 output   [2047:0] __VLG_O_iram;
-output    [127:0] __VLG_O_iram_short;
 output      [7:0] __VLG_O_op1;
 output      [7:0] __VLG_O_op1_d;
 output      [7:0] __VLG_O_op2;
@@ -276,23 +212,7 @@ output            __m27__;
 output            __m28__;
 output            __m29__;
 output            __m2__;
-output            __m30__;
-output            __m31__;
-output            __m32__;
-output            __m33__;
-output            __m34__;
-output            __m35__;
-output            __m36__;
-output            __m37__;
-output            __m38__;
-output            __m39__;
 output            __m3__;
-output            __m40__;
-output            __m41__;
-output            __m42__;
-output            __m43__;
-output            __m44__;
-output            __m45__;
 output            __m4__;
 output            __m5__;
 output            __m6__;
@@ -304,22 +224,6 @@ output      [7:0] b_reg;
 output      [1:0] decoder_state;
 output     [15:0] dptr;
 output      [7:0] ie;
-output      [7:0] iram_0;
-output      [7:0] iram_1;
-output      [7:0] iram_10;
-output      [7:0] iram_11;
-output      [7:0] iram_12;
-output      [7:0] iram_13;
-output      [7:0] iram_14;
-output      [7:0] iram_15;
-output      [7:0] iram_2;
-output      [7:0] iram_3;
-output      [7:0] iram_4;
-output      [7:0] iram_5;
-output      [7:0] iram_6;
-output      [7:0] iram_7;
-output      [7:0] iram_8;
-output      [7:0] iram_9;
 output            p;
 output     [15:0] pc;
 output     [15:0] pc_log;
@@ -360,27 +264,23 @@ output reg            __RESETED__;
 (* keep *) wire     [15:0] __ILA_SO_XRAM_ADDR;
 (* keep *) wire      [7:0] __ILA_SO_XRAM_DATA_IN;
 (* keep *) wire      [7:0] __ILA_SO_XRAM_DATA_OUT;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_0;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_1;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_10;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_11;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_12;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_13;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_14;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_15;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_2;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_3;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_4;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_5;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_6;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_7;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_8;
-(* keep *) wire      [7:0] __ILA_SO_oc8051_IRAM_data_9;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_0;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_1;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_2;
 (* keep *) wire            __ILA_oc8051_decode_of_I__DOT__0__;
 (* keep *) wire            __ILA_oc8051_valid__;
+(* keep *) wire      [7:0] __IMEM_IRAM_0_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_0_rdata;
+(* keep *) wire      [7:0] __IMEM_IRAM_1_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_1_rdata;
+(* keep *) wire      [7:0] __IMEM_IRAM_2_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_2_rdata;
+(* keep *) wire      [7:0] __IMEM_IRAM_3_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_3_rdata;
+(* keep *) wire      [7:0] __IMEM_IRAM_4_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_4_rdata;
+(* keep *) wire      [7:0] __IMEM_IRAM_5_raddr;
+(* keep *) wire      [7:0] __IMEM_IRAM_5_rdata;
 (* keep *) wire            __ISSUE__;
 (* keep *) wire     [31:0] __VLG_I_cxrom_data_out;
 (* keep *) wire            __VLG_I_ea_in;
@@ -398,7 +298,6 @@ output reg            __RESETED__;
 (* keep *) wire            __VLG_I_wbi_err_i;
 (* keep *) wire     [15:0] __VLG_O_cxrom_addr;
 (* keep *) wire   [2047:0] __VLG_O_iram;
-(* keep *) wire    [127:0] __VLG_O_iram_short;
 (* keep *) wire      [7:0] __VLG_O_op1;
 (* keep *) wire      [7:0] __VLG_O_op1_d;
 (* keep *) wire      [7:0] __VLG_O_op2;
@@ -439,23 +338,7 @@ output reg            __RESETED__;
 (* keep *) wire            __m28__;
 (* keep *) wire            __m29__;
 (* keep *) wire            __m2__;
-(* keep *) wire            __m30__;
-(* keep *) wire            __m31__;
-(* keep *) wire            __m32__;
-(* keep *) wire            __m33__;
-(* keep *) wire            __m34__;
-(* keep *) wire            __m35__;
-(* keep *) wire            __m36__;
-(* keep *) wire            __m37__;
-(* keep *) wire            __m38__;
-(* keep *) wire            __m39__;
 (* keep *) wire            __m3__;
-(* keep *) wire            __m40__;
-(* keep *) wire            __m41__;
-(* keep *) wire            __m42__;
-(* keep *) wire            __m43__;
-(* keep *) wire            __m44__;
-(* keep *) wire            __m45__;
 (* keep *) wire            __m4__;
 (* keep *) wire            __m5__;
 (* keep *) wire            __m6__;
@@ -469,22 +352,6 @@ wire            clk;
 (* keep *) wire     [15:0] dptr;
 (* keep *) wire            dummy_reset;
 (* keep *) wire      [7:0] ie;
-(* keep *) wire      [7:0] iram_0;
-(* keep *) wire      [7:0] iram_1;
-(* keep *) wire      [7:0] iram_10;
-(* keep *) wire      [7:0] iram_11;
-(* keep *) wire      [7:0] iram_12;
-(* keep *) wire      [7:0] iram_13;
-(* keep *) wire      [7:0] iram_14;
-(* keep *) wire      [7:0] iram_15;
-(* keep *) wire      [7:0] iram_2;
-(* keep *) wire      [7:0] iram_3;
-(* keep *) wire      [7:0] iram_4;
-(* keep *) wire      [7:0] iram_5;
-(* keep *) wire      [7:0] iram_6;
-(* keep *) wire      [7:0] iram_7;
-(* keep *) wire      [7:0] iram_8;
-(* keep *) wire      [7:0] iram_9;
 (* keep *) wire            p;
 (* keep *) wire     [15:0] pc;
 (* keep *) wire     [15:0] pc_log;
@@ -527,39 +394,40 @@ assign __m11__ = m1.oc8051_sfr1.oc8051_sp1.sp_out == __ILA_SO_SP ;
 assign __m12__ = m1.oc8051_sfr1.oc8051_int1.tcon == __ILA_SO_TCON ;
 assign __m13__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
 assign __m14__ = m1.oc8051_memory_interface1.ddat_o == __ILA_SO_XRAM_DATA_OUT ;
-assign __m15__ = m1.iram_0 == __ILA_SO_oc8051_IRAM_data_0 ;
-assign __m16__ = m1.iram_1 == __ILA_SO_oc8051_IRAM_data_1 ;
-assign __m17__ = m1.iram_10 == __ILA_SO_oc8051_IRAM_data_10 ;
-assign __m18__ = m1.iram_11 == __ILA_SO_oc8051_IRAM_data_11 ;
-assign __m19__ = m1.iram_12 == __ILA_SO_oc8051_IRAM_data_12 ;
-assign __m20__ = m1.iram_13 == __ILA_SO_oc8051_IRAM_data_13 ;
-assign __m21__ = m1.iram_14 == __ILA_SO_oc8051_IRAM_data_14 ;
-assign __m22__ = m1.iram_15 == __ILA_SO_oc8051_IRAM_data_15 ;
-assign __m23__ = m1.iram_2 == __ILA_SO_oc8051_IRAM_data_2 ;
-assign __m24__ = m1.iram_3 == __ILA_SO_oc8051_IRAM_data_3 ;
-assign __m25__ = m1.iram_4 == __ILA_SO_oc8051_IRAM_data_4 ;
-assign __m26__ = m1.iram_5 == __ILA_SO_oc8051_IRAM_data_5 ;
-assign __m27__ = m1.iram_6 == __ILA_SO_oc8051_IRAM_data_6 ;
-assign __m28__ = m1.iram_7 == __ILA_SO_oc8051_IRAM_data_7 ;
-assign __m29__ = m1.iram_8 == __ILA_SO_oc8051_IRAM_data_8 ;
-assign __m30__ = m1.iram_9 == __ILA_SO_oc8051_IRAM_data_9 ;
-assign __m31__ = m1.oc8051_sfr1.oc8051_acc1.data_out == __ILA_SO_ACC ;
-assign __m32__ = m1.oc8051_sfr1.oc8051_b_register.data_out == __ILA_SO_B ;
-assign __m33__ = m1.oc8051_sfr1.oc8051_dptr1.data_hi == __ILA_SO_DPH ;
-assign __m34__ = m1.oc8051_sfr1.oc8051_dptr1.data_lo == __ILA_SO_DPL ;
-assign __m35__ = m1.oc8051_sfr1.oc8051_int1.ie == __ILA_SO_IE ;
-assign __m36__ = m1.oc8051_sfr1.oc8051_int1.ip == __ILA_SO_IP ;
-assign __m37__ = m1.oc8051_sfr1.oc8051_ports1.p0_out == __ILA_SO_P0 ;
-assign __m38__ = m1.oc8051_sfr1.oc8051_ports1.p1_out == __ILA_SO_P1 ;
-assign __m39__ = m1.oc8051_sfr1.oc8051_ports1.p2_out == __ILA_SO_P2 ;
-assign __m40__ = m1.oc8051_sfr1.oc8051_ports1.p3_out == __ILA_SO_P3 ;
-assign __m41__ = m1.oc8051_memory_interface1.pc == __ILA_SO_PC ;
-assign __m42__ = m1.oc8051_sfr1.oc8051_sp1.sp_out == __ILA_SO_SP ;
-assign __m43__ = m1.oc8051_sfr1.oc8051_int1.tcon == __ILA_SO_TCON ;
-assign __m44__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
-assign __m45__ = m1.oc8051_memory_interface1.ddat_o == __ILA_SO_XRAM_DATA_OUT ;
+assign __m15__ = m1.oc8051_sfr1.oc8051_acc1.data_out == __ILA_SO_ACC ;
+assign __m16__ = m1.oc8051_sfr1.oc8051_b_register.data_out == __ILA_SO_B ;
+assign __m17__ = m1.oc8051_sfr1.oc8051_dptr1.data_hi == __ILA_SO_DPH ;
+assign __m18__ = m1.oc8051_sfr1.oc8051_dptr1.data_lo == __ILA_SO_DPL ;
+assign __m19__ = m1.oc8051_sfr1.oc8051_int1.ie == __ILA_SO_IE ;
+assign __m20__ = m1.oc8051_sfr1.oc8051_int1.ip == __ILA_SO_IP ;
+assign __m21__ = m1.oc8051_sfr1.oc8051_ports1.p0_out == __ILA_SO_P0 ;
+assign __m22__ = m1.oc8051_sfr1.oc8051_ports1.p1_out == __ILA_SO_P1 ;
+assign __m23__ = m1.oc8051_sfr1.oc8051_ports1.p2_out == __ILA_SO_P2 ;
+assign __m24__ = m1.oc8051_sfr1.oc8051_ports1.p3_out == __ILA_SO_P3 ;
+assign __m25__ = m1.oc8051_memory_interface1.pc == __ILA_SO_PC ;
+assign __m26__ = m1.oc8051_sfr1.oc8051_sp1.sp_out == __ILA_SO_SP ;
+assign __m27__ = m1.oc8051_sfr1.oc8051_int1.tcon == __ILA_SO_TCON ;
+assign __m28__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
+assign __m29__ = m1.oc8051_memory_interface1.ddat_o == __ILA_SO_XRAM_DATA_OUT ;
 assign __IEND__ = (`false|| (m1.pc_change == 1)) && __STARTED__ && (~ __ENDED__) ;
 assign __ISSUE__ = 1 ;
+
+
+    oc8051_gm_cxrom oc8051_gm_cxrom_1(
+        .clk            (clk),
+        .rst            (rst),
+        .word_in        (word_in),
+        .cxrom_addr     (cxrom_addr),
+        .cxrom_data_out (cxrom_data_out),
+        .rd_addr_0      (__ILA_SO_oc8051_ROM_addr_0),
+        .rd_addr_1      (__ILA_SO_oc8051_ROM_addr_1),
+        .rd_addr_2      (__ILA_SO_oc8051_ROM_addr_2),
+        .rd_data_0      (__ILA_I_oc8051_ROM_rdata_0),
+        .rd_data_1      (__ILA_I_oc8051_ROM_rdata_1),
+        .rd_data_2      (__ILA_I_oc8051_ROM_rdata_2)
+    );
+
+
 
 oc8051__DOT__I__DOT__0 m0 (
    .__START__(__START__),
@@ -570,6 +438,18 @@ oc8051__DOT__I__DOT__0 m0 (
    .rst(rst),
    .__ILA_oc8051_decode_of_I__DOT__0__(__ILA_oc8051_decode_of_I__DOT__0__),
    .__ILA_oc8051_valid__(__ILA_oc8051_valid__),
+   .IRAM_data_n927(__IMEM_IRAM_0_rdata),
+   .IRAM_addr_n926(__IMEM_IRAM_0_raddr),
+   .IRAM_data_n931(__IMEM_IRAM_1_rdata),
+   .IRAM_addr_n930(__IMEM_IRAM_1_raddr),
+   .IRAM_data_n954(__IMEM_IRAM_2_rdata),
+   .IRAM_addr_n953(__IMEM_IRAM_2_raddr),
+   .IRAM_data_n1893(__IMEM_IRAM_3_rdata),
+   .IRAM_addr_n1892(__IMEM_IRAM_3_raddr),
+   .IRAM_data_n2101(__IMEM_IRAM_4_rdata),
+   .IRAM_addr_n2100(__IMEM_IRAM_4_raddr),
+   .IRAM_data_n2111(__IMEM_IRAM_5_rdata),
+   .IRAM_addr_n2110(__IMEM_IRAM_5_raddr),
    .ACC(__ILA_SO_ACC),
    .B(__ILA_SO_B),
    .DPH(__ILA_SO_DPH),
@@ -598,22 +478,6 @@ oc8051__DOT__I__DOT__0 m0 (
    .oc8051_ROM_addr_0(__ILA_SO_oc8051_ROM_addr_0),
    .oc8051_ROM_addr_1(__ILA_SO_oc8051_ROM_addr_1),
    .oc8051_ROM_addr_2(__ILA_SO_oc8051_ROM_addr_2),
-   .oc8051_IRAM_data_0(__ILA_SO_oc8051_IRAM_data_0),
-   .oc8051_IRAM_data_1(__ILA_SO_oc8051_IRAM_data_1),
-   .oc8051_IRAM_data_2(__ILA_SO_oc8051_IRAM_data_2),
-   .oc8051_IRAM_data_3(__ILA_SO_oc8051_IRAM_data_3),
-   .oc8051_IRAM_data_4(__ILA_SO_oc8051_IRAM_data_4),
-   .oc8051_IRAM_data_5(__ILA_SO_oc8051_IRAM_data_5),
-   .oc8051_IRAM_data_6(__ILA_SO_oc8051_IRAM_data_6),
-   .oc8051_IRAM_data_7(__ILA_SO_oc8051_IRAM_data_7),
-   .oc8051_IRAM_data_8(__ILA_SO_oc8051_IRAM_data_8),
-   .oc8051_IRAM_data_9(__ILA_SO_oc8051_IRAM_data_9),
-   .oc8051_IRAM_data_10(__ILA_SO_oc8051_IRAM_data_10),
-   .oc8051_IRAM_data_11(__ILA_SO_oc8051_IRAM_data_11),
-   .oc8051_IRAM_data_12(__ILA_SO_oc8051_IRAM_data_12),
-   .oc8051_IRAM_data_13(__ILA_SO_oc8051_IRAM_data_13),
-   .oc8051_IRAM_data_14(__ILA_SO_oc8051_IRAM_data_14),
-   .oc8051_IRAM_data_15(__ILA_SO_oc8051_IRAM_data_15),
    .__COUNTER_start__n1()
 );
 oc8051_top m1(
@@ -628,23 +492,6 @@ oc8051_top m1(
     .int0_i(__VLG_I_int0_i),
     .int1_i(__VLG_I_int1_i),
     .iram(__VLG_O_iram),
-    .iram_0(iram_0),
-    .iram_1(iram_1),
-    .iram_10(iram_10),
-    .iram_11(iram_11),
-    .iram_12(iram_12),
-    .iram_13(iram_13),
-    .iram_14(iram_14),
-    .iram_15(iram_15),
-    .iram_2(iram_2),
-    .iram_3(iram_3),
-    .iram_4(iram_4),
-    .iram_5(iram_5),
-    .iram_6(iram_6),
-    .iram_7(iram_7),
-    .iram_8(iram_8),
-    .iram_9(iram_9),
-    .iram_short(__VLG_O_iram_short),
     .op1(__VLG_O_op1),
     .op1_d(__VLG_O_op1_d),
     .op2(__VLG_O_op2),

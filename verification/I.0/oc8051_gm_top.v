@@ -6645,6 +6645,23 @@ module oc8051_top (wb_rst_i, wb_clk_i,
                 dptr,
                 ie,
                 iram,
+		iram_short,
+		iram_0,
+		iram_1,
+		iram_2,
+		iram_3,
+		iram_4,
+		iram_5,
+		iram_6,
+		iram_7,
+		iram_8,
+		iram_9,
+		iram_10,
+		iram_11,
+		iram_12,
+		iram_13,
+		iram_14,
+		iram_15,
                 psw, p,
                 sp,
                 op1, op2, op3,
@@ -6675,8 +6692,10 @@ output [7:0]  acc;
 output [7:0]  b_reg;
 output [15:0] dptr;
 output [2047:0] iram;
+output [127:0] iram_short;
 output [7:0] op1, op1_d, op2, op3;
 output [7:0]  ie;
+output [7:0] iram_0, iram_1, iram_2, iram_3, iram_4, iram_5, iram_6, iram_7, iram_8, iram_9, iram_10, iram_11, iram_12, iram_13, iram_14, iram_15;
 
 input [7:0]   wbd_dat_i;        // ram data input
 input [31:0]  wbi_dat_i;        // rom data input
@@ -6920,6 +6939,26 @@ wire [7:0] iram0 = iram[7:0];
 wire [7:0] iram1 = iram[15:8];
 wire [7:0] iram8 = iram[71:64];
 wire [7:0] iram9 = iram[79:72];
+wire [127:0] iram_short = iram[127:0];
+wire [7:0] iram_0 = iram_short[7:0];
+wire [7:0] iram_1 = iram_short[15:8];
+wire [7:0] iram_2 = iram_short[23:16];
+wire [7:0] iram_3 = iram_short[31:24];
+wire [7:0] iram_4 = iram_short[39:32];
+wire [7:0] iram_5 = iram_short[47:40];
+wire [7:0] iram_6 = iram_short[55:48];
+wire [7:0] iram_7 = iram_short[63:56];
+wire [7:0] iram_8 = iram_short[71:64];
+wire [7:0] iram_9 = iram_short[79:72];
+wire [7:0] iram_10 = iram_short[87:80];
+wire [7:0] iram_11 = iram_short[95:88];
+wire [7:0] iram_12 = iram_short[103:96];
+wire [7:0] iram_13 = iram_short[111:104];
+wire [7:0] iram_14 = iram_short[119:112];
+wire [7:0] iram_15 = iram_short[127:120];
+
+
+
 // wire [7:0] wr_addr_m, wr_data_m;
 
 oc8051_ram_top oc8051_ram_top1(.clk(wb_clk_i),
