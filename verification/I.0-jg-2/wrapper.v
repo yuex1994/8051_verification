@@ -6,7 +6,6 @@
 
 /* END OF PREHEADER */
 module wrapper(
-word_in,
 __ILA_I_oc8051_ROM_rdata_0,
 __ILA_I_oc8051_ROM_rdata_1,
 __ILA_I_oc8051_ROM_rdata_2,
@@ -138,7 +137,6 @@ input            __VLG_I_wbd_err_i;
 input            __VLG_I_wbi_ack_i;
 input     [31:0] __VLG_I_wbi_dat_i;
 input            __VLG_I_wbi_err_i;
-input     [128:0] word_in;
 input            clk;
 input            dummy_reset;
 input            rst;
@@ -411,23 +409,6 @@ assign __m28__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
 assign __m29__ = m1.oc8051_memory_interface1.ddat_o == __ILA_SO_XRAM_DATA_OUT ;
 assign __IEND__ = (`false|| (m1.pc_change == 1)) && __STARTED__ && (~ __ENDED__) ;
 assign __ISSUE__ = 1 ;
-
-
-    oc8051_gm_cxrom oc8051_gm_cxrom_1(
-        .clk            (clk),
-        .rst            (rst),
-        .word_in        (word_in),
-        .cxrom_addr     (cxrom_addr),
-        .cxrom_data_out (cxrom_data_out),
-        .rd_addr_0      (__ILA_SO_oc8051_ROM_addr_0),
-        .rd_addr_1      (__ILA_SO_oc8051_ROM_addr_1),
-        .rd_addr_2      (__ILA_SO_oc8051_ROM_addr_2),
-        .rd_data_0      (__ILA_I_oc8051_ROM_rdata_0),
-        .rd_data_1      (__ILA_I_oc8051_ROM_rdata_1),
-        .rd_data_2      (__ILA_I_oc8051_ROM_rdata_2)
-    );
-
-
 
 oc8051__DOT__I__DOT__0 m0 (
    .__START__(__START__),
