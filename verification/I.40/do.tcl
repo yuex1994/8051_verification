@@ -5,7 +5,7 @@ analyze -sva  \
 
 elaborate -top wrapper
 clock clk
-reset rst -formal -bound 3
+reset rst
 assume -name noreset0 { (~__RESETED__) || (dummy_reset == 0) }
 assume -name variable_map_assume_1 {(~ __START__ )|| (__m0__)}
 assume -name variable_map_assume_2 {(~ __START__ )|| (__m1__)}
@@ -43,7 +43,7 @@ assume -name additional_mapping_control_assume33 {m1.wbd_ack_i == m1.wbd_stb_o}
 assume -name additional_mapping_control_assume34 {m1.cxrom_data_out[7:0] == __ILA_I_oc8051_ROM_rdata_0}
 assume -name additional_mapping_control_assume35 {m1.op1 == __ILA_I_oc8051_ROM_rdata_0}
 assume -name additional_mapping_control_assume36 {__ILA_SO_PSW[6:0] == m1.oc8051_sfr1.oc8051_psw1.data}
-assume -name issue_decode37 {(~ __START__) || (__ILA_oc8051_decode_of_I__DOT__0__)}
+assume -name issue_decode37 {(~ __START__) || (__ILA_oc8051_decode_of_I__DOT__40__)}
 assume -name issue_valid38 {(~ __START__) || (__ILA_oc8051_valid__)}
 assert -name variable_map_assert_0 {(~ __IEND__) || (__m31__)}
 assert -name variable_map_assert_1 {(~ __IEND__) || (__m32__)}

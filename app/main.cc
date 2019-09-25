@@ -13,6 +13,7 @@ using std::cout;
 using std::endl;
 
 int main() {
+  SetUnsignedComparison(true);
   auto model_file = "./oc8051.json";
   auto model_ila = IlaSerDesMngr::DesFromFile(model_file);
   // cout << "input_num: " << model_ila->input_num() << endl;
@@ -20,22 +21,40 @@ int main() {
   cout << "child_num: " << model_ila->child_num() << endl;
   cout << "instr_num: " << model_ila->instr_num() << endl;
 
+  int state_bit = 0;
   for (int i = 0; i < model_ila->state_num(); i++) {
     cout << "state_" << i << model_ila->state(i) << endl;
+    auto state_sort = model_ila->state(i)->sort();
+    if (state_sort->is_bv()) {
+      state_bit += state_sort->bit_width();
+    } else if (state_sort->is_bool()) {
+      state_bit += 1;
+    } else {
+      std::cout << "mem " << " addr " << state_sort->addr_width() << " data " << state_sort->data_width() << std::endl; 
+    }
   }
+  std::cout << "state_bit" << state_bit << std::endl;
 
-  Model8051RemapMemInterface(model_ila);
+  std::vector<ExprPtr> tmp_iram_elements;
+  ModifyIramInterface(model_ila, tmp_iram_elements);
+  
+  AddIromInputState(model_ila);
+  Model8051RemapMemInterface(model_ila, tmp_iram_elements, 0);
+  Model8051RemapMemInterface(model_ila, tmp_iram_elements, 40);
   auto instr_0 = model_ila->instr(0);
-  cout << "decode: " << instr_0->decode() << endl;
-  cout << "name: " << instr_0->name() << endl;
+  auto instr_40 = model_ila->instr(40);
+  cout << "decode 0: " << instr_0->decode() << endl;
+  cout << "name 0: " << instr_0->name() << endl;
+  cout << "decoder 40: " << instr_40->decode() << endl;
+  cout << "name 40: " << instr_40->name() << endl;
   z3::context ctx;
   z3::solver sol(ctx);
   Z3ExprAdapter z3_adapter(ctx);
-  auto z3_decode = z3_adapter.GetExpr(instr_0->decode());
+  auto z3_decode = z3_adapter.GetExpr(instr_40->decode());
   cout << z3_decode << endl;
-  auto state_set = instr_0->updated_states();
+  auto state_set = instr_40->updated_states();
   for (auto state : state_set) {
-    auto z3_update = z3_adapter.GetExpr(instr_0->update(state));
+    auto z3_update = z3_adapter.GetExpr(instr_40->update(state));
     cout << "update state: " << state << endl;
     cout << "update function: " << z3_update << endl;
   }
@@ -43,6 +62,7 @@ int main() {
 
   VerilogGeneratorBase::VlgGenConfig vlg_cfg;
   VerilogVerificationTargetGenerator::vtg_config_t vtg_cfg;
+  vtg_cfg.ForceInstCheckReset = true;
   vlg_cfg.pass_node_name = true;
   std::string RootPath = "..";
   std::string VerilogPath = RootPath + "/verilog/";

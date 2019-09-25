@@ -6700,11 +6700,11 @@ output [7:0] iram_0, iram_1, iram_2, iram_3, iram_4, iram_5, iram_6, iram_7, ira
 input [7:0]   wbd_dat_i;        // ram data input
 input [31:0]  wbi_dat_i;        // rom data input
 
-output        wbd_we_o,         // data write enable
-              wbd_stb_o,        // data strobe
-              wbd_cyc_o,        // data cycle
-              wbi_stb_o,        // instruction strobe
-              wbi_cyc_o;        // instruction cycle
+output        wbd_we_o;         // data write enable
+output        wbd_stb_o;        // data strobe
+output        wbd_cyc_o;        // data cycle
+output        wbi_stb_o;        // instruction strobe
+output        wbi_cyc_o;        // instruction cycle
 
 output [7:0]  wbd_dat_o;        // data output
 

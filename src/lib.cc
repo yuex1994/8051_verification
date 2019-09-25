@@ -6,44 +6,48 @@
 #include <simple/lib.h>
 #include <ilang/util/log.h>
 
-void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr) {
+void AddIromInputState(const InstrLvlAbsPtr& model_ptr) {
   auto data_0 = model_ptr->NewBvInput("oc8051_ROM_rdata_0", 8);
   auto data_1 = model_ptr->NewBvInput("oc8051_ROM_rdata_1", 8);
   auto data_2 = model_ptr->NewBvInput("oc8051_ROM_rdata_2", 8);
   auto addr_0 = model_ptr->NewBvState("oc8051_ROM_addr_0", 16);
   auto addr_1 = model_ptr->NewBvState("oc8051_ROM_addr_1", 16);
   auto addr_2 = model_ptr->NewBvState("oc8051_ROM_addr_2", 16);
+}
 
-  std::vector<ExprPtr> tmp_iram_elements;
-  ModifyIramInterface(model_ptr, tmp_iram_elements);
+void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& tmp_iram_elements, int instr_num) {
+  auto addr_0 = model_ptr->state("oc8051_ROM_addr_0");
+  auto addr_1 = model_ptr->state("oc8051_ROM_addr_1");
+  auto addr_2 = model_ptr->state("oc8051_ROM_addr_2");
+
   //model_ptr->AddInput(data_0);
- // model_ptr->AddInput(data_1);
+  // model_ptr->AddInput(data_1);
   //model_ptr->AddInput(data_2);
   //auto addr_0 = model_ptr->state(addr_0);
   //auto addr_1 = model_ptr->state(addr_1);
   //auto addr_2 = model_ptr->state(addr_2);
   auto pc_state = model_ptr->state("PC");
-  auto instr_0 = model_ptr->instr(0);
+  auto instr = model_ptr->instr(instr_num);
   if (pc_state)
     std::cout << "not null" << std::endl;
   else
     std::cout << "pc NULL" << std::endl;
   auto DfsModifyRom = [&model_ptr](const ExprPtr& e) {DfsFromRomToPort(e, model_ptr);};
   auto DfsModifyIram = [&model_ptr, &tmp_iram_elements](const ExprPtr& e) {DfsFromIramToPort(e, model_ptr, tmp_iram_elements);};
-  for (auto updated_state_name : instr_0->updated_states()) {
-    auto updated_expr = instr_0->update(updated_state_name);
+  for (auto updated_state_name : instr->updated_states()) {
+    auto updated_expr = instr->update(updated_state_name);
     updated_expr->DepthFirstVisit(DfsModifyIram);
     updated_expr->DepthFirstVisit(DfsModifyRom);
     // Only Assume Store happens at the ast top level 
     if (GetUidExprOp(updated_expr) == AST_UID_EXPR_OP::STORE) {
-      ModifyIramStore(updated_expr, model_ptr, instr_0, tmp_iram_elements);
+      ModifyIramStore(updated_expr, model_ptr, instr, tmp_iram_elements);
     } 
   }
-  instr_0->decode()->DepthFirstVisit(DfsModifyIram);
-  instr_0->decode()->DepthFirstVisit(DfsModifyRom);
-  instr_0->set_update(addr_0, pc_state);
-  instr_0->set_update(addr_1, ExprFuse::Add(pc_state, 1));
-  instr_0->set_update(addr_2, ExprFuse::Add(pc_state, 2));
+  instr->decode()->DepthFirstVisit(DfsModifyIram);
+  instr->decode()->DepthFirstVisit(DfsModifyRom);
+  instr->set_update(addr_0, pc_state);
+  instr->set_update(addr_1, ExprFuse::Add(pc_state, 1));
+  instr->set_update(addr_2, ExprFuse::Add(pc_state, 2));
 
   return;
 }

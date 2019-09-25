@@ -4,7 +4,12 @@
     {
       "instruction"     : "I.0",
       "ready signal"    : "m1.pc_change == 1"
+    },
+    {
+      "instruction"     : "I.40",
+      "ready signal"    : "m1.pc_change == 1"
     }
+
   ],
   "global invariants" : []
 }

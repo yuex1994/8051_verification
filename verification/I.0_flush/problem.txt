@@ -1,0 +1,16 @@
+[GENERAL]
+model_files:wrapper.v[wrapper],rst.ets
+assume_if_true: True
+abstract_clock: True
+[DEFAULT]
+bmc_length: 132
+precondition: reset_done
+
+[variable_map_assert_]
+description:"variable_map_assert_"
+properties:(variable_map_assert___p64__ = 1_1) & (variable_map_assert___p66__ = 1_1) & (variable_map_assert___p68__ = 1_1) & (variable_map_assert___p70__ = 1_1) & (variable_map_assert___p72__ = 1_1) & (variable_map_assert___p74__ = 1_1) & (variable_map_assert___p76__ = 1_1) & (variable_map_assert___p78__ = 1_1) & (variable_map_assert___p80__ = 1_1) & (variable_map_assert___p82__ = 1_1) & (variable_map_assert___p84__ = 1_1) & (variable_map_assert___p86__ = 1_1) & (variable_map_assert___p88__ = 1_1) & (variable_map_assert___p90__ = 1_1) & (variable_map_assert___p92__ = 1_1)
+assumptions:(noreset__m0__ = 1_1) & (variable_map_assume___m2__ = 1_1) & (variable_map_assume___m4__ = 1_1) & (variable_map_assume___m6__ = 1_1) & (variable_map_assume___m8__ = 1_1) & (variable_map_assume___m10__ = 1_1) & (variable_map_assume___m12__ = 1_1) & (variable_map_assume___m14__ = 1_1) & (variable_map_assume___m16__ = 1_1) & (variable_map_assume___m18__ = 1_1) & (variable_map_assume___m20__ = 1_1) & (variable_map_assume___m22__ = 1_1) & (variable_map_assume___m24__ = 1_1) & (variable_map_assume___m26__ = 1_1) & (variable_map_assume___m28__ = 1_1) & (variable_map_assume___m30__ = 1_1) & (variable_map_assume___m32__ = 1_1) & (variable_map_assume___m34__ = 1_1) & (variable_map_assume___m36__ = 1_1) & (variable_map_assume___m38__ = 1_1) & (variable_map_assume___m40__ = 1_1) & (variable_map_assume___m42__ = 1_1) & (variable_map_assume___m44__ = 1_1) & (variable_map_assume___m46__ = 1_1) & (variable_map_assume___m48__ = 1_1) & (variable_map_assume___m50__ = 1_1) & (variable_map_assume___m52__ = 1_1) & (variable_map_assume___m54__ = 1_1) & (variable_map_assume___m56__ = 1_1) & (variable_map_assume___m58__ = 1_1) & (variable_map_assume___m60__ = 1_1) & (variable_map_assume___m62__ = 1_1) & (additional_mapping_control_assume__m93__ = 1_1) & (additional_mapping_control_assume__m94__ = 1_1) & (additional_mapping_control_assume__m95__ = 1_1) & (additional_mapping_control_assume__m96__ = 1_1) & (additional_mapping_control_assume__m97__ = 1_1) & (issue_decode__m98__ = 1_1) & (issue_valid__m99__ = 1_1)
+prove: True
+verification: safety
+strategy: ALL
+expected: True

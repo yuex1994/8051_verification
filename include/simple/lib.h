@@ -8,7 +8,8 @@
 #include <ilang/ila/ast_fuse.h>
 using namespace ilang;
 
-void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr);
+void AddIromInputState(const InstrLvlAbsPtr& model_ptr);
+void Model8051RemapMemInterface(const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& tmp_iram_elements, int instr_num);
 void DfsFromRomToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr);
 void DfsFromIramToPort(const ExprPtr& expr, const InstrLvlAbsPtr& model_ptr, std::vector<ExprPtr>& iram);
 

@@ -381,7 +381,7 @@ output reg            __RESETED__;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_0;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_1;
 (* keep *) wire     [15:0] __ILA_SO_oc8051_ROM_addr_2;
-(* keep *) wire            __ILA_oc8051_decode_of_I__DOT__0__;
+(* keep *) wire            __ILA_oc8051_decode_of_I__DOT__40__;
 (* keep *) wire            __ILA_oc8051_valid__;
 (* keep *) wire            __ISSUE__;
 (* keep *) wire     [31:0] __VLG_I_cxrom_data_out;
@@ -562,14 +562,14 @@ assign __m44__ = m1.oc8051_memory_interface1.dadr_o == __ILA_SO_XRAM_ADDR ;
 assign __m45__ = m1.oc8051_memory_interface1.ddat_o == __ILA_SO_XRAM_DATA_OUT ;
 assign __IEND__ = (`false|| (m1.pc_change == 1)) && __STARTED__ && (~ __ENDED__) ;
 
-oc8051__DOT__I__DOT__0 m0 (
+oc8051__DOT__I__DOT__40 m0 (
    .__START__(__START__),
    .clk(clk),
    .oc8051_ROM_rdata_0(__ILA_I_oc8051_ROM_rdata_0),
    .oc8051_ROM_rdata_1(__ILA_I_oc8051_ROM_rdata_1),
    .oc8051_ROM_rdata_2(__ILA_I_oc8051_ROM_rdata_2),
    .rst(rst),
-   .__ILA_oc8051_decode_of_I__DOT__0__(__ILA_oc8051_decode_of_I__DOT__0__),
+   .__ILA_oc8051_decode_of_I__DOT__40__(__ILA_oc8051_decode_of_I__DOT__40__),
    .__ILA_oc8051_valid__(__ILA_oc8051_valid__),
    .ACC(__ILA_SO_ACC),
    .B(__ILA_SO_B),
